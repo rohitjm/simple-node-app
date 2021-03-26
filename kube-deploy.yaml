@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-node-app
+spec:
+  replicas: 2
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: simple-node-app
+  template:
+    metadata:
+      labels:
+        app: simple-node-app
+    spec:
+      containers:
+      # modify the following line with your Docker Hub account name
+      - image: index.docker.io/rohitjm/simple-node-app:latest
+        name: simple-node-app
+        ports:
+        - containerPort: 8080
